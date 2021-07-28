@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "@types/node": "^16.4.6",
+    "vk-io": "^4.3.2"
+  },
+  "name": "carousel",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "swedesjs",
+  "license": "MIT",
+  "description": ""
+}
