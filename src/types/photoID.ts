@@ -1,3 +1,5 @@
+import { Carousel } from "./carousel"
+
 export type PhotoId = {
   /**
    * ID изображения, которое надо прикрепить.
@@ -8,4 +10,4 @@ export type PhotoId = {
    * Загрузка изображений для карусели происходит также, как и {@link https://vk.com/dev/bots_docs_2?f=3.2.+Вложения загрузка изображений ботами в сообщениях}.
    */
   photo_id: string
-}
+} & Carousel

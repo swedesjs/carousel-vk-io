@@ -1,4 +1,4 @@
-import { Keyboard } from "vk-io"
+import { Keyboard, KeyboardBuilder } from "vk-io"
 import { actionCarousel, TitleDescription, PhotoId } from "."
 
 export interface Carousel {
@@ -14,7 +14,7 @@ export interface Carousel {
    * })
    * ```
    */
-  buttons: Keyboard
+  buttons: KeyboardBuilder
 
   /**
    * Объект, описывающий действие, которое необходимо выполнить при нажатии на элемент карусели.
@@ -28,9 +28,4 @@ export interface Carousel {
   action?: actionCarousel
 }
 
-export type props = Carousel & TitleDescription & PhotoId
-export type carouselParams<T extends props> = T["title"] extends never ? (T["photo_id"] extends never ? Required<T> : T) : T
-export type CarouselParams =
-  | (Partial<Pick<TitleDescription, "title">> & Partial<PhotoId> & Omit<TitleDescription, "title"> & Carousel)
-  | ((Pick<TitleDescription, "title"> | PhotoId) & Partial<Omit<TitleDescription, "title"> & Carousel>)
-  | (Pick<TitleDescription, "description"> & Partial<PhotoId> & Carousel)
+export type CarouselParams = TitleDescription | PhotoId
