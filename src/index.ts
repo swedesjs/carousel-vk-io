@@ -1,13 +1,13 @@
 import { Keyboard } from "vk-io"
-import { carouselParams } from "./types"
+import { carouselParams, props } from "./types"
 
 export class CarouselBuilder {
   private carousel = {
     type: "carousel",
-    elements: [] as carouselParams[]
+    elements: [] as props[]
   }
 
-  addElements(params: carouselParams) {
+  addElements<T extends props>(params: carouselParams<T>) {
     this.carousel.elements.push(params)
     return this
   }
@@ -24,9 +24,12 @@ export class Carousel {
 }
 
 console.log(
-  Carousel.builder().addElements({
-    buttons: Keyboard.builder().textButton({
-      label: "text"
+  Carousel.builder()
+    .addElements({
+      buttons: Keyboard.builder(),
+      action: {
+        type: "open_photo"
+      }
     })
-  })
+    .toJSON()
 )

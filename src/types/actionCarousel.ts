@@ -8,4 +8,5 @@ export type actionCarousel =
   | {
       /** `open_photo` - открыть фото текущего элемента карусели */
       type: "open_photo"
+      link?: never
     }
