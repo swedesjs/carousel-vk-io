@@ -1,7 +1,7 @@
 import { Keyboard } from "vk-io"
-import { actionCarousel, titleDescription, photoID } from "."
+import { actionCarousel, TitleDescription, PhotoId } from "."
 
-export interface carousel {
+export interface Carousel {
   /**
    * Массив с кнопками — можно передать любые кнопки, которые описаны в разделе {@link https://vk.com/dev/bots_docs_3?f=4.2.+Структура+данных «Клавиатуры для ботов» → «Структура данных»}. Один элемент карусели может содержать не больше 3-х кнопок.
    *
@@ -28,5 +28,9 @@ export interface carousel {
   action?: actionCarousel
 }
 
-export type props = carousel & titleDescription & photoID
+export type props = Carousel & TitleDescription & PhotoId
 export type carouselParams<T extends props> = T["title"] extends never ? (T["photo_id"] extends never ? Required<T> : T) : T
+export type CarouselParams =
+  | (Partial<Pick<TitleDescription, "title">> & Partial<PhotoId> & Omit<TitleDescription, "title"> & Carousel)
+  | ((Pick<TitleDescription, "title"> | PhotoId) & Partial<Omit<TitleDescription, "title"> & Carousel>)
+  | (Pick<TitleDescription, "description"> & Partial<PhotoId> & Carousel)
